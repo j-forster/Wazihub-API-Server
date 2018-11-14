@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bytes"
 	"crypto/tls"
+	"errors"
 	"io"
 	"log"
 	"net/http"
@@ -38,9 +40,11 @@ func ServeHTTPS(resp http.ResponseWriter, req *http.Request) {
 ////////////////////
 
 type wsWrapper struct {
+	tag    string
 	conn   *websocket.Conn
 	wc     io.WriteCloser
 	head   mqtt.FixedHeader
+	buf    *bytes.Buffer
 	remain int
 }
 
@@ -48,12 +52,43 @@ func (w *wsWrapper) Close() error {
 	return w.conn.Close()
 }
 
+var nonBinaryMessage = errors.New("Unexpected TEXT message.")
+
+func (w *wsWrapper) Read(p []byte) (n int, err error) {
+
+	if w.buf == nil || w.buf.Len() == 0 {
+
+		messageType, data, err := w.conn.ReadMessage()
+		if err != nil {
+			log.Printf("[%s] (%s) WebSocket Read Error\n %v", w.tag, w.conn.RemoteAddr().String(), err)
+			w.conn.Close()
+			return 0, err
+		}
+
+		if messageType != websocket.BinaryMessage {
+			log.Printf("[%s] (%s) WebSocket Error:\n Unexpected TEXT message.", w.tag, w.conn.RemoteAddr().String())
+			w.conn.Close()
+			return 0, nonBinaryMessage
+		}
+
+		w.buf = bytes.NewBuffer(data)
+	}
+
+	return w.buf.Read(p)
+}
+
 func (w *wsWrapper) Write(data []byte) (int, error) {
 
 	if w.remain == 0 {
-		w.wc, _ = w.conn.NextWriter(websocket.BinaryMessage)
-		l, _ := w.head.ReadMessage(data)
-		w.remain = l + w.head.Length
+		var err error
+		w.wc, err = w.conn.NextWriter(websocket.BinaryMessage)
+		if err != nil {
+			return 0, err
+		}
+		buf := bytes.NewBuffer(data)
+		w.head.Read(buf)
+		// num of bytes read by FixedHeader (= header size) + payload length
+		w.remain = (len(data) - buf.Len()) + w.head.Length
 	}
 
 	w.remain -= len(data)
@@ -95,34 +130,8 @@ func serveHTTP(resp http.ResponseWriter, req *http.Request) {
 			tag = "WS   "
 		}
 
-		wrapper := wsWrapper{conn: conn}
-		mqttConn := mqtt.NewConnection(&wrapper, &wrapper, mqttServer)
-
-		for {
-			messageType, msg, err := conn.ReadMessage()
-			if err != nil {
-				log.Printf("[%s] (%s) WebSocket Read Error\n %v", tag, conn.RemoteAddr().String(), err)
-				//mqttConn.Close()
-				conn.Close() // obsolete
-				return
-			}
-
-			if messageType != websocket.BinaryMessage {
-				log.Printf("[%s] (%s) WebSocket Error:\n Unexpected TEXT message.", tag, conn.RemoteAddr().String())
-				mqttConn.Close()
-				conn.Close() // obsolete
-				return
-			}
-
-			mqttConn.ReadMessage(msg)
-			/*
-				if err := conn.WriteMessage(messageType, msg); err != nil {
-					log.Printf("[%s] (%s) WebSocket Write Error\n %v", tag, conn.RemoteAddr().String(), err)
-					return
-				}
-			*/
-
-		}
+		wrapper := &wsWrapper{tag: tag, conn: conn}
+		mqtt.Serve(wrapper, mqttServer)
 	}
 }
 

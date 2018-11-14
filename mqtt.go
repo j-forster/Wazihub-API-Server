@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"crypto/tls"
 	"log"
-	"net"
 	"net/http"
 	"net/url"
 
@@ -12,54 +11,87 @@ import (
 	"github.com/j-forster/Wazihub-API/tools"
 )
 
-var mqttHandler = &MQTTHandler{}
-var mqttServer = mqtt.NewServer(nil, mqttHandler)
-
-func init() {
-	go mqttServer.Run()
+type MQTTServer struct {
+	mqtt.Server
 }
+
+var connectCounter, disconnectCounter int
+
+func (server *MQTTServer) Publish(client *mqtt.Client, msg *mqtt.Message) error {
+
+	if client != nil {
+
+		log.Printf("[MQTT ] Publish %q %q QoS:%d len:%d\n", client.Id, msg.Topic, msg.QoS, len(msg.Data))
+
+		body := tools.ClosingBuffer{bytes.NewBuffer(msg.Data)}
+		rurl, _ := url.Parse(msg.Topic)
+		req := http.Request{
+			Method: "PUBLISH",
+			URL:    rurl,
+			Header: http.Header{
+				"X-Tag": []string{"MQTT "},
+			},
+			Body:          &body,
+			ContentLength: int64(len(msg.Data)),
+			RemoteAddr:    client.Id,
+			RequestURI:    msg.Topic,
+		}
+		resp := MQTTResponse{
+			status: 200,
+			header: make(http.Header),
+		}
+
+		Serve(&resp, &req)
+		// if resp.status >= 200 && resp.status < 300 {
+		server.Server.Publish(client, msg)
+		// }
+	} else {
+
+		server.Server.Publish(client, msg)
+	}
+
+	return nil
+}
+
+func (server *MQTTServer) Connect(client *mqtt.Client, auth *mqtt.ConnectAuth) byte {
+	log.Printf("[MQTT ] Connect %q %+v\n", client.Id, auth)
+	return mqtt.CodeAccepted
+}
+
+func (server *MQTTServer) Disconnect(client *mqtt.Client, err error) {
+	log.Printf("[MQTT ] Disonnect %q %v\n", client.Id, err)
+}
+
+func (server *MQTTServer) Subscribe(recv mqtt.Reciever, topic string, qos byte) *mqtt.Subscription {
+
+	if client, ok := recv.(*mqtt.Client); ok {
+		log.Printf("[MQTT ] Subscribe %q %q QoS:%d\n", client.Id, topic, qos)
+	}
+	return server.Server.Subscribe(recv, topic, qos)
+}
+
+func (server *MQTTServer) Unsubscribe(subs *mqtt.Subscription) {
+
+	if client, ok := subs.Recv.(*mqtt.Client); ok {
+		log.Printf("[MQTT ] Unsubscribe %q %q QoS:%d\n", client.Id, subs.Topic.FullName(), subs.QoS)
+	}
+	server.Server.Unsubscribe(subs)
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+var mqttServer = &MQTTServer{mqtt.NewServer()}
 
 func ListenAndServerMQTT() {
 
 	log.Println("[MQTT ] MQTT Server at \":1883\".")
-	listener, err := net.Listen("tcp", ":1883")
-	if err != nil {
-		log.Fatalln("[MQTT ] Error:\n", err)
-	}
-
-	for {
-
-		conn, err := listener.Accept()
-		if err == nil {
-
-			go mqttServer.Serve(conn)
-		} else {
-
-			log.Fatalln("[MQTT ] Error:\n", err)
-		}
-	}
+	mqtt.ListenAndServe(":1883", mqttServer)
 }
 
-func ListenAndServeMQTTTLS(config *tls.Config) error {
+func ListenAndServeMQTTTLS(config *tls.Config) {
 
 	log.Println("[MQTTS] MQTT (with TLS) Server at \":8883\".")
-
-	listener, err := tls.Listen("tcp", ":8883", config)
-	if err != nil {
-		log.Fatalln("[MQTTS] Error:\n", err)
-	}
-
-	for {
-
-		conn, err := listener.Accept()
-		if err == nil {
-
-			go mqttServer.Serve(conn)
-		} else {
-
-			log.Fatalln("[MQTTS] Error:\n", err)
-		}
-	}
+	mqtt.ListenAndServeTLS(":8883", config, mqttServer)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -79,46 +111,4 @@ func (resp *MQTTResponse) Write(data []byte) (int, error) {
 
 func (resp *MQTTResponse) WriteHeader(statusCode int) {
 	resp.status = statusCode
-}
-
-type MQTTHandler struct{}
-
-func (h *MQTTHandler) Connect(conn *mqtt.Connection, username, password string) error {
-	log.Printf("[MQTT ] (%s) Connect: %s, %s\n", conn.ClientID, username, password)
-	return nil
-}
-
-func (h *MQTTHandler) Disconnect(conn *mqtt.Connection) {
-	log.Printf("[MQTT ] (%s) Disconnect.\n", conn.ClientID)
-}
-
-func (h *MQTTHandler) Publish(conn *mqtt.Connection, msg *mqtt.Message) error {
-	if conn != nil {
-		log.Printf("[MQTT ] (%s) Published \"%s\" [%d].\n", conn.ClientID, msg.Topic, len(msg.Buf))
-
-		body := tools.ClosingBuffer{bytes.NewBuffer(msg.Buf)}
-		rurl, _ := url.Parse(msg.Topic)
-		req := http.Request{
-			Method: "PUBLISH",
-			URL:    rurl,
-			Header: http.Header{
-				"X-Tag": []string{"MQTT "},
-			},
-			Body:          &body,
-			ContentLength: int64(len(msg.Buf)),
-			RemoteAddr:    conn.ClientID,
-			RequestURI:    msg.Topic,
-		}
-		resp := MQTTResponse{
-			status: 200,
-			header: make(http.Header),
-		}
-		Serve(&resp, &req)
-	}
-	return nil
-}
-
-func (h *MQTTHandler) Subscribe(conn *mqtt.Connection, topic string, qos byte) error {
-	log.Printf("[MQTT ] (%s) Subscribe \"%s\".\n", conn.ClientID, topic)
-	return nil
 }

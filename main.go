@@ -98,15 +98,15 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 
 	if cbuf, ok := req.Body.(*tools.ClosingBuffer); ok {
 		log.Printf("[DEBUG] Body: %s\n", cbuf.Bytes())
-		msg := mqtt.Message{
+		msg := &mqtt.Message{
 			QoS:   0,
 			Topic: req.RequestURI[1:],
-			Buf:   cbuf.Bytes(),
+			Data:  cbuf.Bytes(),
 		}
 
 		// if wrapper.status >= 200 && wrapper.status < 300 {
 		if req.Method == http.MethodPut || req.Method == http.MethodPost {
-			mqttServer.Publish(nil, &msg)
+			mqttServer.Publish(nil, msg)
 		}
 		// }
 	}
