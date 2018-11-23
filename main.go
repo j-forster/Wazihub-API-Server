@@ -8,9 +8,18 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/globalsign/mgo"
 	"github.com/j-forster/Wazihub-API/mqtt"
 	"github.com/j-forster/Wazihub-API/tools"
 )
+
+/*
+var db *mongo.Client
+var collection *mongo.Collection
+*/
+
+var db *mgo.Session
+var collection *mgo.Collection
 
 func main() {
 
@@ -20,7 +29,53 @@ func main() {
 	tlsCert := flag.String("crt", "", "TLS Cert File (.crt)")
 	tlsKey := flag.String("key", "", "TLS Key File (.key)")
 
+	dbAddr := flag.String("db", "localhost:27017", "MongoDB address.")
+
 	flag.Parse()
+
+	////////////////////
+
+	log.Println("WaziHub API Server")
+	log.Println("--------------------")
+
+	////////////////////
+
+	log.Printf("[DB   ] Dialing MongoDB at %q...\n", *dbAddr)
+
+	var err error
+	db, err = mgo.Dial("mongodb://" + *dbAddr + "/?connect=direct")
+	if err != nil {
+		db = nil
+		log.Println("[DB   ] MongoDB client error:\n", err)
+	} else {
+
+		collection = db.DB("Wazihub").C("values")
+	}
+
+	/*
+		db, err = mongo.NewClient("mongodb://" + *dbAddr + "/?connect=direct")
+		if err != nil {
+			db = nil
+			log.Println("[DB   ] MongoDB client error:\n", err)
+		} else {
+
+			err = db.Connect(context.TODO())
+			if err != nil {
+				db = nil
+				log.Println("[DB   ] MongoDB connect error:\n", err)
+
+			} else {
+				err = db.Ping(context.TODO(), nil)
+				if err != nil {
+					log.Println("[DB   ] MongoDB client error:\n", err)
+				} else {
+
+					collection = db.Database("Wazihub").Collection("Values")
+					log.Println("[DB   ] MongoDB Connected.")
+				}
+			}
+		}
+	*/
 
 	////////////////////
 
@@ -49,11 +104,6 @@ func main() {
 		go ListenAndServeHTTPS(cfg)
 		go ListenAndServeMQTTTLS(cfg)
 	}
-
-	////////////////////
-
-	log.Println("WaziHub API Server")
-	log.Println("--------------------")
 
 	go ListenAndServerMQTT()
 	ListenAndServeHTTP()
