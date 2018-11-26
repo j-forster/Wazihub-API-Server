@@ -16,7 +16,7 @@ type Value struct {
 	Value        interface{}
 }
 
-func PostValues(resp http.ResponseWriter, req *http.Request, params routing.Params) {
+func PostValue(resp http.ResponseWriter, req *http.Request, params routing.Params) {
 
 	deviceId := params.ByName("device_id")
 	sensorId := params.ByName("sensor_id")
