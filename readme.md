@@ -3,7 +3,7 @@
 The Wazihub Gateway is a tiny server between your measurement & actuation software
 and the Wazihub Cloud, running on the Raspberry Pi. It has a easy-to-use API for
 REST and MQTT and will manage your measurement data, incomming actuation commands
-and synchronization with the [Wazihub Cloud](https://wazihub.com/).
+and synchronization with the [Wazihub Cloud](https://www.waziup.io/).
 ![Wazihub Gateway and platform structure](img/platform.svg)
 
 # API
