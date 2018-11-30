@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Generiert durch Microsoft Visio, SVG Export Zeichnung1.svg Page-1 -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events"
+		xmlns:v="http://schemas.microsoft.com/visio/2003/SVGExtensions/" width="7.41987in" height="3.30569in"
+		viewBox="0 0 534.23 238.01" xml:space="preserve" color-interpolation-filters="sRGB" class="st14">
+	<v:documentProperties v:langID="1031" v:metric="true" v:viewMarkup="false">
+		<v:userDefs>
+			<v:ud v:nameU="msvNoAutoConnect" v:val="VT0(1):26"/>
+		</v:userDefs>
+	</v:documentProperties>
+
+	<style type="text/css">
+	<![CDATA[
+		.st1 {fill:#ffffff;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st2 {fill:#000000;font-family:Calibri;font-size:1.00001em}
+		.st3 {fill:#d8d8d8;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st4 {fill:none;stroke:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st5 {fill:#000000;font-family:CMU Sans Serif;font-size:1.00001em}
+		.st6 {fill:#000000;font-family:Calibri;font-size:0.833336em}
+		.st7 {fill:#000000;font-family:CMU Sans Serif;font-size:0.833336em}
+		.st8 {stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st9 {font-size:0.749994em}
+		.st10 {fill:#000000;font-family:Calibri;font-size:0.75em}
+		.st11 {font-size:1.33334em}
+		.st12 {marker-end:url(#mrkr4-145);marker-start:url(#mrkr4-143);stroke:#000000;stroke-linecap:round;stroke-linejoin:round;stroke-width:0.75}
+		.st13 {fill:#000000;fill-opacity:1;stroke:#000000;stroke-opacity:1;stroke-width:0.34246575342466}
+		.st14 {fill:none;fill-rule:evenodd;font-size:12px;overflow:visible;stroke-linecap:square;stroke-miterlimit:3}
+	]]>
+	</style>
+
+	<defs id="Markers">
+		<g id="lend4">
+			<path d="M 2 1 L 0 0 L 2 -1 L 2 1 " style="stroke:none"/>
+		</g>
+		<marker id="mrkr4-143" class="st13" v:arrowType="4" v:arrowSize="0" v:setback="5.36" refX="5.36" orient="auto"
+				markerUnits="strokeWidth" overflow="visible">
+			<use xlink:href="#lend4" transform="scale(2.92) "/>
+		</marker>
+		<marker id="mrkr4-145" class="st13" v:arrowType="4" v:arrowSize="0" v:setback="5.84" refX="-5.84" orient="auto"
+				markerUnits="strokeWidth" overflow="visible">
+			<use xlink:href="#lend4" transform="scale(-2.92,-2.92) "/>
+		</marker>
+	</defs>
+	<g v:mID="0" v:index="1" v:groupContext="foregroundPage">
+		<title>Zeichenblatt-1</title>
+		<v:pageProperties v:drawingScale="0.0393701" v:pageScale="0.0393701" v:drawingUnits="24" v:shadowOffsetX="8.50394"
+				v:shadowOffsetY="-8.50394"/>
+		<g id="shape125-1" v:mID="125" v:groupContext="shape" transform="translate(337.217,-107.666)">
+			<title>Tabelle.125</title>
+			<desc>Cloud Server</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197" v:verticalAlign="0"/>
+			<v:textRect cx="83.65" cy="193.364" width="167.3" height="89.2913"/>
+			<rect x="0" y="148.719" width="167.3" height="89.2913" class="st1"/>
+			<text x="4" y="163.52" class="st2" v:langID="1031"><v:paragraph/><v:tabList/>Cloud Server</text>		</g>
+		<g id="shape71-4" v:mID="71" v:groupContext="shape" transform="translate(153.588,-107.666)">
+			<title>Tabelle.71</title>
+			<desc>Gateway Server</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197" v:verticalAlign="0"/>
+			<v:textRect cx="55.7008" cy="193.364" width="111.41" height="89.2913"/>
+			<rect x="0" y="148.719" width="111.402" height="89.2913" class="st3"/>
+			<text x="4" y="163.52" class="st2" v:langID="1031"><v:paragraph/><v:tabList/>Gateway Server</text>		</g>
+		<g id="group6-7" transform="translate(203.062,-113.806)" v:mID="6" v:groupContext="group">
+			<title>Tabelle.6</title>
+			<g id="shape7-8" v:mID="7" v:groupContext="shape" transform="translate(-1.59872E-014,-3.30818)">
+				<title>Parallelogramm</title>
+				<v:userDefs>
+					<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				</v:userDefs>
+				<path d="M0 238.01 L16.1 238.01 L24.6 181.32 L8.5 181.32 L0 238.01 Z" class="st1"/>
+			</g>
+			<g id="shape8-10" v:mID="8" v:groupContext="shape" transform="translate(-220.185,203.241) rotate(-81.6)">
+				<title>Tabelle.8</title>
+				<desc>Sensors</desc>
+				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="30.8811" cy="230.447" width="61.77" height="15.126"/>
+				<rect x="0" y="222.884" width="61.7622" height="15.126" class="st4"/>
+				<text x="12.15" y="234.05" class="st5" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Sensors</text>			</g>
+		</g>
+		<g id="group9-13" transform="translate(219.295,-113.806)" v:mID="9" v:groupContext="group">
+			<title>Tabelle.9</title>
+			<g id="shape10-14" v:mID="10" v:groupContext="shape" transform="translate(-1.59872E-014,-3.30818)">
+				<title>Parallelogramm</title>
+				<v:userDefs>
+					<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				</v:userDefs>
+				<path d="M0 238.01 L16.1 238.01 L24.6 181.32 L8.5 181.32 L0 238.01 Z" class="st1"/>
+			</g>
+			<g id="shape11-16" v:mID="11" v:groupContext="shape" transform="translate(-220.185,203.241) rotate(-81.6)">
+				<title>Tabelle.11</title>
+				<desc>Actuators</desc>
+				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="30.8811" cy="230.447" width="61.77" height="15.126"/>
+				<rect x="0" y="222.884" width="61.7622" height="15.126" class="st4"/>
+				<text x="6.56" y="234.05" class="st5" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Actuators</text>			</g>
+		</g>
+		<g id="shape121-19" v:mID="121" v:groupContext="shape" transform="translate(201.154,-104.143)">
+			<title>Tabelle.121</title>
+			<path d="M0 238.01 L48.35 237.94 L50.28 225.04 L1.91 225.04 L0 238.01 Z" class="st1"/>
+		</g>
+		<g id="shape16-21" v:mID="16" v:groupContext="shape" transform="translate(203.062,-104.209)">
+			<title>Tabelle.16</title>
+			<desc>Devices</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="23.2113" cy="231.557" width="46.43" height="12.9052"/>
+			<rect x="0" y="225.105" width="46.4227" height="12.9052" class="st4"/>
+			<text x="7.68" y="234.56" class="st6" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Devices</text>		</g>
+		<g id="group19-24" transform="translate(235.341,-113.806)" v:mID="19" v:groupContext="group">
+			<title>Tabelle.19</title>
+			<g id="shape20-25" v:mID="20" v:groupContext="shape" transform="translate(-1.59872E-014,-3.30818)">
+				<title>Parallelogramm</title>
+				<v:userDefs>
+					<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				</v:userDefs>
+				<path d="M0 238.01 L16.1 238.01 L24.6 181.32 L8.5 181.32 L0 238.01 Z" class="st1"/>
+			</g>
+			<g id="shape21-27" v:mID="21" v:groupContext="shape" transform="translate(-220.185,203.241) rotate(-81.6)">
+				<title>Tabelle.21</title>
+				<desc>Devices</desc>
+				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="30.8811" cy="230.447" width="61.77" height="15.126"/>
+				<rect x="0" y="222.884" width="61.7622" height="15.126" class="st4"/>
+				<text x="12.07" y="234.05" class="st5" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Devices</text>			</g>
+		</g>
+		<g id="group22-30" transform="translate(184.996,-100.673)" v:mID="22" v:groupContext="group">
+			<title>Tabelle.22</title>
+			<g id="shape23-31" v:mID="23" v:groupContext="shape" transform="translate(1.98425,-3.46991)">
+				<title>Parallelogramm</title>
+				<v:userDefs>
+					<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				</v:userDefs>
+				<path d="M0 238.01 L14.17 238.01 L24.38 168.56 L10.2 168.56 L0 238.01 Z" class="st1"/>
+			</g>
+			<g id="shape24-33" v:mID="24" v:groupContext="shape" transform="translate(-220.031,202.195) rotate(-81.6)">
+				<title>Tabelle.24</title>
+				<desc>Auth</desc>
+				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="35.1961" cy="231.348" width="70.4" height="13.324"/>
+				<rect x="0" y="224.686" width="70.3921" height="13.324" class="st4"/>
+				<text x="22.83" y="234.95" class="st5" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Auth</text>			</g>
+		</g>
+		<g id="group40-36" transform="translate(371.015,-113.806)" v:mID="40" v:groupContext="group">
+			<title>Tabelle.40</title>
+			<g id="shape41-37" v:mID="41" v:groupContext="shape" transform="translate(-1.59872E-014,-3.30818)">
+				<title>Parallelogramm</title>
+				<v:userDefs>
+					<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				</v:userDefs>
+				<path d="M0 238.01 L16.1 238.01 L24.6 181.32 L8.5 181.32 L0 238.01 Z" class="st1"/>
+			</g>
+			<g id="shape42-39" v:mID="42" v:groupContext="shape" transform="translate(-220.185,203.241) rotate(-81.6)">
+				<title>Tabelle.42</title>
+				<desc>Sensors</desc>
+				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="30.8811" cy="230.447" width="61.77" height="15.126"/>
+				<rect x="0" y="222.884" width="61.7622" height="15.126" class="st4"/>
+				<text x="12.15" y="234.05" class="st5" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Sensors</text>			</g>
+		</g>
+		<g id="group43-42" transform="translate(387.248,-113.806)" v:mID="43" v:groupContext="group">
+			<title>Tabelle.43</title>
+			<g id="shape44-43" v:mID="44" v:groupContext="shape" transform="translate(-1.59872E-014,-3.30818)">
+				<title>Parallelogramm</title>
+				<v:userDefs>
+					<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				</v:userDefs>
+				<path d="M0 238.01 L16.1 238.01 L24.6 181.32 L8.5 181.32 L0 238.01 Z" class="st1"/>
+			</g>
+			<g id="shape45-45" v:mID="45" v:groupContext="shape" transform="translate(-220.185,203.241) rotate(-81.6)">
+				<title>Tabelle.45</title>
+				<desc>Actuators</desc>
+				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="30.8811" cy="230.447" width="61.77" height="15.126"/>
+				<rect x="0" y="222.884" width="61.7622" height="15.126" class="st4"/>
+				<text x="6.56" y="234.05" class="st5" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Actuators</text>			</g>
+		</g>
+		<g id="group50-48" transform="translate(403.294,-113.806)" v:mID="50" v:groupContext="group">
+			<title>Tabelle.50</title>
+			<g id="shape51-49" v:mID="51" v:groupContext="shape" transform="translate(-1.59872E-014,-3.30818)">
+				<title>Parallelogramm</title>
+				<v:userDefs>
+					<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				</v:userDefs>
+				<path d="M0 238.01 L16.1 238.01 L24.6 181.32 L8.5 181.32 L0 238.01 Z" class="st1"/>
+			</g>
+			<g id="shape52-51" v:mID="52" v:groupContext="shape" transform="translate(-220.185,203.241) rotate(-81.6)">
+				<title>Tabelle.52</title>
+				<desc>Devices</desc>
+				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="30.8811" cy="230.447" width="61.77" height="15.126"/>
+				<rect x="0" y="222.884" width="61.7622" height="15.126" class="st4"/>
+				<text x="12.07" y="234.05" class="st5" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Devices</text>			</g>
+		</g>
+		<g id="group53-54" transform="translate(352.949,-100.673)" v:mID="53" v:groupContext="group">
+			<title>Tabelle.53</title>
+			<g id="shape54-55" v:mID="54" v:groupContext="shape" transform="translate(1.98425,-3.46991)">
+				<title>Parallelogramm</title>
+				<v:userDefs>
+					<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				</v:userDefs>
+				<path d="M0 238.01 L14.17 238.01 L24.38 168.56 L10.2 168.56 L0 238.01 Z" class="st1"/>
+			</g>
+			<g id="shape55-57" v:mID="55" v:groupContext="shape" transform="translate(-220.031,202.195) rotate(-81.6)">
+				<title>Tabelle.55</title>
+				<desc>Auth</desc>
+				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="35.1961" cy="231.348" width="70.4" height="13.324"/>
+				<rect x="0" y="224.686" width="70.3921" height="13.324" class="st4"/>
+				<text x="22.83" y="234.95" class="st5" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Auth</text>			</g>
+		</g>
+		<g id="group56-60" transform="translate(415.766,-100.86)" v:mID="56" v:groupContext="group">
+			<title>Tabelle.56</title>
+			<g id="shape57-61" v:mID="57" v:groupContext="shape" transform="translate(1.98425,-3.46991)">
+				<title>Parallelogramm</title>
+				<v:userDefs>
+					<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				</v:userDefs>
+				<path d="M0 238.01 L14.17 238.01 L24.38 168.56 L10.2 168.56 L0 238.01 Z" class="st1"/>
+			</g>
+			<g id="shape58-63" v:mID="58" v:groupContext="shape" transform="translate(-220.031,202.195) rotate(-81.6)">
+				<title>Tabelle.58</title>
+				<desc>Gateway</desc>
+				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="35.1961" cy="231.348" width="70.4" height="13.324"/>
+				<rect x="0" y="224.686" width="70.3921" height="13.324" class="st4"/>
+				<text x="13.75" y="234.95" class="st5" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Gateway</text>			</g>
+		</g>
+		<g id="group59-66" transform="translate(430.223,-100.86)" v:mID="59" v:groupContext="group">
+			<title>Tabelle.59</title>
+			<g id="shape60-67" v:mID="60" v:groupContext="shape" transform="translate(1.98425,-3.46991)">
+				<title>Parallelogramm</title>
+				<v:userDefs>
+					<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				</v:userDefs>
+				<path d="M0 238.01 L14.17 238.01 L24.38 168.56 L10.2 168.56 L0 238.01 Z" class="st1"/>
+			</g>
+			<g id="shape61-69" v:mID="61" v:groupContext="shape" transform="translate(-220.031,202.195) rotate(-81.6)">
+				<title>Tabelle.61</title>
+				<desc>Project</desc>
+				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="35.1961" cy="231.348" width="70.4" height="13.324"/>
+				<rect x="0" y="224.686" width="70.3921" height="13.324" class="st4"/>
+				<text x="17.23" y="234.95" class="st5" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Project</text>			</g>
+		</g>
+		<g id="group62-72" transform="translate(444.396,-100.86)" v:mID="62" v:groupContext="group">
+			<title>Tabelle.62</title>
+			<g id="shape63-73" v:mID="63" v:groupContext="shape" transform="translate(1.98425,-3.46991)">
+				<title>Parallelogramm</title>
+				<v:userDefs>
+					<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				</v:userDefs>
+				<path d="M0 238.01 L14.17 238.01 L24.38 168.56 L10.2 168.56 L0 238.01 Z" class="st1"/>
+			</g>
+			<g id="shape64-75" v:mID="64" v:groupContext="shape" transform="translate(-220.031,202.195) rotate(-81.6)">
+				<title>Tabelle.64</title>
+				<desc>Users</desc>
+				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="35.1961" cy="231.348" width="70.4" height="13.324"/>
+				<rect x="0" y="224.686" width="70.3921" height="13.324" class="st4"/>
+				<text x="21.77" y="234.95" class="st5" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Users</text>			</g>
+		</g>
+		<g id="group65-78" transform="translate(458.398,-100.86)" v:mID="65" v:groupContext="group">
+			<title>Tabelle.65</title>
+			<g id="shape66-79" v:mID="66" v:groupContext="shape" transform="translate(1.98425,-3.46991)">
+				<title>Parallelogramm</title>
+				<v:userDefs>
+					<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				</v:userDefs>
+				<path d="M0 238.01 L14.17 238.01 L24.38 168.56 L10.2 168.56 L0 238.01 Z" class="st1"/>
+			</g>
+			<g id="shape67-81" v:mID="67" v:groupContext="shape" transform="translate(-220.031,202.195) rotate(-81.6)">
+				<title>Tabelle.67</title>
+				<desc>Socials</desc>
+				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="35.1961" cy="231.348" width="70.4" height="13.324"/>
+				<rect x="0" y="224.686" width="70.3921" height="13.324" class="st4"/>
+				<text x="18.17" y="234.95" class="st5" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Socials</text>			</g>
+		</g>
+		<g id="group68-84" transform="translate(472.743,-100.86)" v:mID="68" v:groupContext="group">
+			<title>Tabelle.68</title>
+			<g id="shape69-85" v:mID="69" v:groupContext="shape" transform="translate(1.98425,-3.46991)">
+				<title>Parallelogramm</title>
+				<v:userDefs>
+					<v:ud v:nameU="visVersion" v:prompt="" v:val="VT0(15):26"/>
+				</v:userDefs>
+				<path d="M0 238.01 L14.17 238.01 L24.38 168.56 L10.2 168.56 L0 238.01 Z" class="st1"/>
+			</g>
+			<g id="shape70-87" v:mID="70" v:groupContext="shape" transform="translate(-220.031,202.195) rotate(-81.6)">
+				<title>Tabelle.70</title>
+				<desc>Notifications</desc>
+				<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+				<v:textRect cx="35.1961" cy="231.348" width="70.4" height="13.324"/>
+				<rect x="0" y="224.686" width="70.3921" height="13.324" class="st4"/>
+				<text x="8.83" y="234.35" class="st7" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Notifications</text>			</g>
+		</g>
+		<g id="shape123-90" v:mID="123" v:groupContext="shape" transform="translate(369.192,-104.062)">
+			<title>Tabelle.123</title>
+			<path d="M0 238.01 L48.35 237.94 L50.28 225.04 L1.91 225.04 L0 238.01 Z" class="st1"/>
+		</g>
+		<g id="shape124-92" v:mID="124" v:groupContext="shape" transform="translate(371.1,-104.128)">
+			<title>Tabelle.124</title>
+			<desc>Devices</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="23.2113" cy="231.557" width="46.43" height="12.9052"/>
+			<rect x="0" y="225.105" width="46.4227" height="12.9052" class="st4"/>
+			<text x="7.68" y="234.56" class="st6" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Devices</text>		</g>
+		<g id="shape126-95" v:mID="126" v:groupContext="shape" transform="translate(325.934,-72.2333)">
+			<title>Tabelle.126</title>
+			<path d="M189.92 238.01 L0 238.01 L0 90.61 L189.92 90.61" class="st8"/>
+		</g>
+		<g id="shape127-98" v:mID="127" v:groupContext="shape" transform="translate(325.934,-202.627)">
+			<title>Tabelle.127</title>
+			<desc>Cloud api.waziup.io</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="63.0709" cy="229.506" width="126.15" height="17.0079"/>
+			<rect x="0" y="221.002" width="126.142" height="17.0079" class="st4"/>
+			<text x="4" y="233.11" class="st2" v:langID="1031"><v:paragraph/><v:tabList/>Cloud  <tspan class="st9">api</tspan><tspan
+						class="st9">.</tspan><tspan class="st9">waziup</tspan><tspan class="st9">.</tspan><tspan class="st9">io</tspan></text>		</g>
+		<g id="shape128-106" v:mID="128" v:groupContext="shape" transform="translate(60.8947,-72.2333)">
+			<title>Tabelle.128</title>
+			<path d="M0 90.61 L215.43 90.61 L215.43 238.01 L0 238.01" class="st8"/>
+		</g>
+		<g id="shape130-109" v:mID="130" v:groupContext="shape" transform="translate(140.265,-202.627)">
+			<title>Tabelle.130</title>
+			<desc>Raspberry PI Gateway</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="68.0315" cy="229.506" width="136.07" height="17.0079"/>
+			<rect x="0" y="221.002" width="136.063" height="17.0079" class="st4"/>
+			<text x="37.62" y="233.11" class="st10" v:langID="1031"><v:paragraph v:horizAlign="2"/><v:tabList/>Raspberry PI<tspan
+						class="st11">  </tspan><tspan class="st11">Gateway</tspan></text>		</g>
+		<g id="shape131-114" v:mID="131" v:groupContext="shape" transform="translate(72.2333,-107.666)">
+			<title>Tabelle.131</title>
+			<desc>DAQ Measurement &#38; Actuation</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197" v:verticalAlign="0"/>
+			<v:textRect cx="35.4331" cy="193.364" width="70.87" height="89.2913"/>
+			<rect x="0" y="148.719" width="70.8661" height="89.2913" class="st1"/>
+			<text x="4" y="163.52" class="st2" v:langID="1031"><v:paragraph/><v:tabList/>DAQ<v:newlineChar/><tspan x="4" dy="1.3em"
+						class="st9">Measurement </tspan><tspan class="st9">&#38;<v:newlineChar/></tspan><tspan x="4" dy="1.5em"
+						class="st9">Actuation</tspan></text>		</g>
+		<g id="shape132-120" v:mID="132" v:groupContext="shape" transform="translate(170.737,-41.0522)">
+			<title>Tabelle.132</title>
+			<path d="M0 238.01 L311.81 238.01" class="st8"/>
+		</g>
+		<g id="shape133-123" v:mID="133" v:groupContext="shape" transform="translate(408.747,196.958) rotate(90)">
+			<title>Tabelle.133</title>
+			<path d="M0 238.01 L22.68 238.01" class="st8"/>
+		</g>
+		<g id="shape134-126" v:mID="134" v:groupContext="shape" transform="translate(720.558,196.958) rotate(90)">
+			<title>Tabelle.134</title>
+			<path d="M0 238.01 L22.68 238.01" class="st8"/>
+		</g>
+		<g id="shape135-129" v:mID="135" v:groupContext="shape" transform="translate(168.611,-18.375)">
+			<title>Tabelle.135</title>
+			<desc>Client Dashboard, Apps, ...</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="156.969" cy="226.671" width="313.94" height="22.6772"/>
+			<rect x="0" y="215.333" width="313.937" height="22.6772" class="st4"/>
+			<text x="103.5" y="230.27" class="st2" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Client  <tspan
+						class="st9">Dashboard</tspan><tspan class="st9">, </tspan><tspan class="st9">Apps</tspan><tspan class="st9">, </tspan><tspan
+						class="st9">...</tspan></text>		</g>
+		<g id="shape137-137" v:mID="137" v:groupContext="shape" transform="translate(457.645,140.265) rotate(90)">
+			<title>Tabelle.137</title>
+			<path d="M4.02 238.01 L4.38 238.01 L60.82 238.01" class="st12"/>
+		</g>
+		<g id="shape138-146" v:mID="138" v:groupContext="shape" transform="translate(118.721,-83.5719)">
+			<title>Tabelle.138</title>
+			<path d="M83.91 227.86 L83.91 228.22 L83.91 238.01 L0 238.01 L0 208.37" class="st12"/>
+		</g>
+		<g id="shape139-153" v:mID="139" v:groupContext="shape" transform="translate(674.495,140.631) rotate(90)">
+			<title>Tabelle.139</title>
+			<path d="M4.02 238.01 L4.38 238.01 L60.45 238.01" class="st12"/>
+		</g>
+		<g id="shape140-160" v:mID="140" v:groupContext="shape" transform="translate(238.06,-83.0497)">
+			<title>Tabelle.140</title>
+			<path d="M0 228.75 L0 229.11 L0 238.01 L152.18 238.01 L152.18 228.22" class="st12"/>
+		</g>
+		<g id="shape141-167" v:mID="141" v:groupContext="shape" transform="translate(79.3199,358.999) rotate(180)">
+			<title>Tabelle.141</title>
+			<path d="M4.02 238.01 L4.38 238.01 L35.31 238.01" class="st12"/>
+		</g>
+		<g id="shape142-174" v:mID="142" v:groupContext="shape" transform="translate(79.9166,344.826) rotate(180)">
+			<title>Tabelle.142</title>
+			<path d="M4.02 238.01 L4.38 238.01 L35.31 238.01" class="st12"/>
+		</g>
+		<g id="shape143-181" v:mID="143" v:groupContext="shape" transform="translate(79.3199,330.653) rotate(180)">
+			<title>Tabelle.143</title>
+			<path d="M4.02 238.01 L4.38 238.01 L35.31 238.01" class="st12"/>
+		</g>
+		<g id="shape144-188" v:mID="144" v:groupContext="shape" transform="translate(18.375,-119.572)">
+			<title>Tabelle.144</title>
+			<desc>Sensors</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="26.9291" cy="233.758" width="53.86" height="8.50394"/>
+			<rect x="0" y="229.506" width="53.8583" height="8.50394" class="st4"/>
+			<text x="12.8" y="236.46" class="st10" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Sensors</text>		</g>
+		<g id="shape146-191" v:mID="146" v:groupContext="shape" transform="translate(18.375,-134.029)">
+			<title>Tabelle.146</title>
+			<desc>Actors</desc>
+			<v:textBlock v:margins="rect(4,4,4,4)" v:tabSpace="42.5197"/>
+			<v:textRect cx="26.9291" cy="233.758" width="53.86" height="8.50394"/>
+			<rect x="0" y="229.506" width="53.8583" height="8.50394" class="st4"/>
+			<text x="15.21" y="236.46" class="st10" v:langID="1031"><v:paragraph v:horizAlign="1"/><v:tabList/>Actors</text>		</g>
+	</g>
+</svg>
