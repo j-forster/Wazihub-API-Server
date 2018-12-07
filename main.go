@@ -21,8 +21,6 @@ var collection *mongo.Collection
 var db *mgo.Session
 var collection *mgo.Collection
 
-var upstream *mqtt.Client
-
 func main() {
 
 	// Remove date and time from logs
@@ -59,11 +57,7 @@ func main() {
 	////////////////////
 
 	if *upstreamAddr != "" {
-		log.Printf("[UP   ] Dialing Upstream at %q...\n", *upstreamAddr)
-		upstream, err = mqtt.Dial(*upstreamAddr, "Mario", true, nil, nil)
-		if err != nil {
-			log.Fatalln(err)
-		}
+		go Upstream(*upstreamAddr)
 	}
 
 	////////////////////

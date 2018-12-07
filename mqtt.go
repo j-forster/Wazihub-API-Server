@@ -52,7 +52,7 @@ func (server *MQTTServer) Publish(client *mqtt.Client, msg *mqtt.Message) error 
 
 	if upstream != nil {
 
-		upstream.Publish(client, msg)
+		upstream <- msg
 	}
 
 	return nil
