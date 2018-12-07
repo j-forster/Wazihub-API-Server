@@ -50,6 +50,11 @@ func (server *MQTTServer) Publish(client *mqtt.Client, msg *mqtt.Message) error 
 		server.Server.Publish(client, msg)
 	}
 
+	if upstream != nil {
+
+		upstream.Publish(client, msg)
+	}
+
 	return nil
 }
 

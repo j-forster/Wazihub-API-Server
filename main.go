@@ -21,6 +21,8 @@ var collection *mongo.Collection
 var db *mgo.Session
 var collection *mgo.Collection
 
+var upstream *mqtt.Client
+
 func main() {
 
 	// Remove date and time from logs
@@ -30,6 +32,8 @@ func main() {
 	tlsKey := flag.String("key", "", "TLS Key File (.key)")
 
 	dbAddr := flag.String("db", "localhost:27017", "MongoDB address.")
+
+	upstreamAddr := flag.String("upstream", "", "Upstream server address.")
 
 	flag.Parse()
 
@@ -52,30 +56,15 @@ func main() {
 		collection = db.DB("Wazihub").C("values")
 	}
 
-	/*
-		db, err = mongo.NewClient("mongodb://" + *dbAddr + "/?connect=direct")
+	////////////////////
+
+	if *upstreamAddr != "" {
+		log.Printf("[UP   ] Dialing Upstream at %q...\n", *upstreamAddr)
+		upstream, err = mqtt.Dial(*upstreamAddr, "Mario", true, nil, nil)
 		if err != nil {
-			db = nil
-			log.Println("[DB   ] MongoDB client error:\n", err)
-		} else {
-
-			err = db.Connect(context.TODO())
-			if err != nil {
-				db = nil
-				log.Println("[DB   ] MongoDB connect error:\n", err)
-
-			} else {
-				err = db.Ping(context.TODO(), nil)
-				if err != nil {
-					log.Println("[DB   ] MongoDB client error:\n", err)
-				} else {
-
-					collection = db.Database("Wazihub").Collection("Values")
-					log.Println("[DB   ] MongoDB Connected.")
-				}
-			}
+			log.Fatalln(err)
 		}
-	*/
+	}
 
 	////////////////////
 
