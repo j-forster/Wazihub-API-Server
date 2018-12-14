@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
 
 	"github.com/globalsign/mgo"
 	"github.com/j-forster/Wazihub-API/mqtt"
@@ -21,6 +22,8 @@ var collection *mongo.Collection
 var db *mgo.Session
 var collection *mgo.Collection
 
+var static http.Handler
+
 func main() {
 
 	// Remove date and time from logs
@@ -28,6 +31,8 @@ func main() {
 
 	tlsCert := flag.String("crt", "", "TLS Cert File (.crt)")
 	tlsKey := flag.String("key", "", "TLS Key File (.key)")
+
+	www := flag.String("www", "/var/www", "HTTP files root")
 
 	dbAddr := flag.String("db", "localhost:27017", "MongoDB address.")
 
@@ -41,6 +46,8 @@ func main() {
 	log.Println("--------------------")
 
 	////////////////////
+
+	static = http.FileServer(http.Dir(*www))
 
 	log.Printf("[DB   ] Dialing MongoDB at %q...\n", *dbAddr)
 
@@ -108,6 +115,19 @@ func (resp *ResponseWriter) WriteHeader(statusCode int) {
 
 func Serve(resp http.ResponseWriter, req *http.Request) {
 	wrapper := ResponseWriter{resp, 200}
+
+	if strings.HasPrefix(req.RequestURI, "/www/") {
+		req.RequestURI = req.RequestURI[4:]
+		req.URL.Path = req.URL.Path[4:]
+		static.ServeHTTP(&wrapper, req)
+
+		log.Printf("[WWW  ] (%s) %d %s \"/www%s\"\n",
+			req.RemoteAddr,
+			wrapper.status,
+			req.Method,
+			req.RequestURI)
+		return
+	}
 
 	if req.Method == http.MethodPut || req.Method == http.MethodPost {
 
