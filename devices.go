@@ -25,7 +25,12 @@ func GetDevices(resp http.ResponseWriter, req *http.Request, params routing.Para
 
 	buf := bytes.Buffer{}
 	buf.Write([]byte{'['})
+	n := 0
 	for _, device := range devices {
+		if n != 0 {
+			buf.Write([]byte{','})
+		}
+		n++
 		// NOT-CONFORM: Returns also last_value.
 		data, err := json.MarshalIndent(device, "", "  ")
 		if err != nil {
@@ -33,7 +38,6 @@ func GetDevices(resp http.ResponseWriter, req *http.Request, params routing.Para
 			return
 		}
 		buf.Write(data)
-		buf.Write([]byte{','})
 	}
 	buf.Write([]byte{']'})
 	resp.Write(buf.Bytes())
