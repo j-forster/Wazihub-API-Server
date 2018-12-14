@@ -24,4 +24,6 @@ func init() {
 	router.GET("/devices/:device_id/actuators", GetActuators)
 	router.POST("/devices/:device_id/actuators", CreateActuator)
 	router.GET("/devices/:device_id/actuators/:actuator_id", GetActuator)
+
+	router.POST("/devices/:device_id/actuators/:actuator_id/value", PostActuatorValue)
 }

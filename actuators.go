@@ -24,12 +24,12 @@ func getActuator(deviceId, actuatorId string) *wazihub.Actuator {
 }
 
 func GetActuator(resp http.ResponseWriter, req *http.Request, params routing.Params) {
-	sensor := getActuator(params.ByName("device_id"), params.ByName("actuator_id"))
-	if sensor == nil {
+	actuator := getActuator(params.ByName("device_id"), params.ByName("actuator_id"))
+	if actuator == nil {
 		http.Error(resp, "Not Found: Actuator or device not found.", http.StatusNotFound)
 		return
 	}
-	tools.SendJSON(resp, sensor)
+	tools.SendJSON(resp, actuator)
 }
 
 func GetActuators(resp http.ResponseWriter, req *http.Request, params routing.Params) {
@@ -69,4 +69,27 @@ func CreateActuator(resp http.ResponseWriter, req *http.Request, params routing.
 	// NOT-CONFORM: Return id on success.
 	resp.Header().Set("Content-Type", "text/plain")
 	resp.Write([]byte(actuator.Id))
+}
+
+func PostActuatorValue(resp http.ResponseWriter, req *http.Request, params routing.Params) {
+	actuator := getActuator(params.ByName("device_id"), params.ByName("actuator_id"))
+	if actuator == nil {
+		http.Error(resp, "Not Found: Actuator or device not found.", http.StatusNotFound)
+		return
+	}
+
+	data, err := tools.ReadAll(req.Body)
+	if err != nil {
+		http.Error(resp, "Request Error: "+err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	var value interface{}
+	err = json.Unmarshal(data, &value)
+	if err != nil {
+		http.Error(resp, "Bad Request: "+err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	actuator.Value = value
 }
