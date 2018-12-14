@@ -15,8 +15,6 @@ type MQTTServer struct {
 	mqtt.Server
 }
 
-var connectCounter, disconnectCounter int
-
 func (server *MQTTServer) Publish(client *mqtt.Client, msg *mqtt.Message) error {
 
 	if client != nil {
@@ -50,9 +48,9 @@ func (server *MQTTServer) Publish(client *mqtt.Client, msg *mqtt.Message) error 
 		server.Server.Publish(client, msg)
 	}
 
-	if upstream != nil {
+	if upstream != nil && (client == nil || client.Id != "upstream") {
 
-		upstream <- msg
+		upstream.WritePacket(mqtt.Publish(msg))
 	}
 
 	return nil
