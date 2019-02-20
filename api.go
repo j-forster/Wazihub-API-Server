@@ -20,6 +20,7 @@ func init() {
 	router.GET("/devices/:device_id/sensors/:sensor_id", GetSensor)
 
 	router.POST("/devices/:device_id/sensors/:sensor_id/value", PostValue)
+	router.POST("/devices/:device_id/sensors/:sensor_id/values", PostValues)
 
 	router.GET("/devices/:device_id/actuators", GetActuators)
 	router.POST("/devices/:device_id/actuators", CreateActuator)

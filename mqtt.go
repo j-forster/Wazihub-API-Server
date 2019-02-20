@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"crypto/tls"
 	"log"
+	"net"
 	"net/http"
 	"net/url"
 
@@ -22,7 +23,7 @@ func (server *MQTTServer) Publish(client *mqtt.Client, msg *mqtt.Message) error 
 		log.Printf("[MQTT ] Publish %q %q QoS:%d len:%d\n", client.Id, msg.Topic, msg.QoS, len(msg.Data))
 
 		body := tools.ClosingBuffer{bytes.NewBuffer(msg.Data)}
-		rurl, _ := url.Parse(msg.Topic)
+		rurl, _ := url.Parse("/" + msg.Topic)
 		req := http.Request{
 			Method: "PUBLISH",
 			URL:    rurl,
@@ -48,7 +49,7 @@ func (server *MQTTServer) Publish(client *mqtt.Client, msg *mqtt.Message) error 
 		server.Server.Publish(client, msg)
 	}
 
-	if upstream != nil && (client == nil || client.Id != "upstream") {
+	if upstream != nil && (client == nil || client.Id != upstreamId) {
 
 		upstream.WritePacket(mqtt.Publish(msg))
 	}
@@ -87,14 +88,28 @@ var mqttServer = &MQTTServer{mqtt.NewServer()}
 
 func ListenAndServerMQTT() {
 
+	listener, err := net.Listen("tcp", ":1883")
+	if err != nil {
+		log.Fatalln("[MQTT ] Error:\n", err)
+	}
+
 	log.Println("[MQTT ] MQTT Server at \":1883\".")
-	mqtt.ListenAndServe(":1883", mqttServer)
+	go func() {
+		mqtt.Serve(listener, mqttServer)
+	}()
 }
 
 func ListenAndServeMQTTTLS(config *tls.Config) {
 
+	listener, err := tls.Listen("tcp", ":8883", config)
+	if err != nil {
+		log.Fatalln("[MQTTS] Error:\n", err)
+	}
+
 	log.Println("[MQTTS] MQTT (with TLS) Server at \":8883\".")
-	mqtt.ListenAndServeTLS(":8883", config, mqttServer)
+	go func() {
+		mqtt.Serve(listener, mqttServer)
+	}()
 }
 
 ////////////////////////////////////////////////////////////////////////////////

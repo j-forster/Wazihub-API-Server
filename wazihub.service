@@ -1,0 +1,17 @@
+[Unit]
+Description=Wazihub API Server
+ConditionPathExists=/bin/wazihub-gateway
+After=network.target mongodb.service
+
+[Service]
+Type=notify
+LimitNOFILE=1024
+
+Restart=on-failure
+RestartSec=2
+
+WorkingDirectory=/var/www
+ExecStart=/bin/wazihub-gateway
+
+[Install]
+WantedBy=multi-user.target

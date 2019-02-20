@@ -6,6 +6,7 @@ import (
 	"errors"
 	"io"
 	"log"
+	"net"
 	"net/http"
 	"time"
 
@@ -131,7 +132,7 @@ func serveHTTP(resp http.ResponseWriter, req *http.Request) {
 		}
 
 		wrapper := &wsWrapper{tag: tag, conn: conn}
-		mqtt.Serve(wrapper, mqttServer)
+		mqtt.ServeConn(wrapper, mqttServer)
 	}
 }
 
@@ -139,9 +140,20 @@ func serveHTTP(resp http.ResponseWriter, req *http.Request) {
 
 func ListenAndServeHTTP() {
 
+	srv := &http.Server{
+		Handler: http.HandlerFunc(ServeHTTP),
+	}
+
+	listener, err := net.Listen("tcp", ":80")
+	if err != nil {
+		log.Fatalln("[HTTP] Error:\n", err)
+	}
+
 	log.Println("[HTTP ] HTTP Server at \":80\". Use \"http://\".")
 	log.Println("[WS   ] MQTT via WebSocket Server at \":80\". Use \"ws://\".")
-	err := http.ListenAndServe(":80", http.HandlerFunc(ServeHTTP))
+
+	notifyDeamon()
+	err = srv.Serve(listener)
 	if err != nil {
 		log.Println("[HTTP ] Error:")
 		log.Fatalln(err)
@@ -158,10 +170,17 @@ func ListenAndServeHTTPS(cfg *tls.Config) {
 		WriteTimeout: time.Minute,
 	}
 
-	log.Println("[HTTPS] HTTPS Server at \":443\". Use \"https://\".")
-	log.Println("[WSS  ] MQTT via WebSocket Server at \":443\".  Use \"wss://\".")
-	err := srv.ListenAndServeTLS("", "")
+	listener, err := tls.Listen("tcp", ":443", cfg)
 	if err != nil {
 		log.Fatalln("[HTTPS] Error:\n", err)
 	}
+
+	log.Println("[HTTPS] HTTPS Server at \":443\". Use \"https://\".")
+	log.Println("[WSS  ] MQTT via WebSocket Server at \":443\".  Use \"wss://\".")
+	go func() {
+		err = srv.Serve(listener) // will block
+		if err != nil {
+			log.Fatalln("[HTTPS] Error:\n", err)
+		}
+	}()
 }

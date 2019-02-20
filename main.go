@@ -7,6 +7,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 
 	"github.com/globalsign/mgo"
@@ -25,18 +26,25 @@ var collection *mgo.Collection
 var static http.Handler
 
 func main() {
-
 	// Remove date and time from logs
 	log.SetFlags(log.Flags() &^ (log.Ldate | log.Ltime))
+
+	if len(os.Args) > 1 && !strings.HasPrefix(os.Args[1], "-") {
+		interactive()
+		return
+	}
 
 	tlsCert := flag.String("crt", "", "TLS Cert File (.crt)")
 	tlsKey := flag.String("key", "", "TLS Key File (.key)")
 
 	www := flag.String("www", "/var/www", "HTTP files root")
 
+	nodb := flag.Bool("no-db", false, "Disable MongoDB")
+
 	dbAddr := flag.String("db", "localhost:27017", "MongoDB address.")
 
-	upstreamAddr := flag.String("upstream", "", "Upstream server address.")
+	upstream, _ := getConfig("upstream")
+	upstreamAddr := flag.String("upstream", upstream, "Upstream server address.")
 
 	flag.Parse()
 
@@ -47,18 +55,25 @@ func main() {
 
 	////////////////////
 
-	static = http.FileServer(http.Dir(*www))
+	if *www != "" {
+		static = http.FileServer(http.Dir(*www))
+	}
 
-	log.Printf("[DB   ] Dialing MongoDB at %q...\n", *dbAddr)
+	////////////////////
 
-	var err error
-	db, err = mgo.Dial("mongodb://" + *dbAddr + "/?connect=direct")
-	if err != nil {
-		db = nil
-		log.Println("[DB   ] MongoDB client error:\n", err)
-	} else {
+	if !*nodb {
 
-		collection = db.DB("Wazihub").C("values")
+		log.Printf("[DB   ] Dialing MongoDB at %q...\n", *dbAddr)
+
+		var err error
+		db, err = mgo.Dial("mongodb://" + *dbAddr + "/?connect=direct")
+		if err != nil {
+			db = nil
+			log.Println("[DB   ] MongoDB client error:\n", err)
+		} else {
+
+			collection = db.DB("Wazihub").C("values")
+		}
 	}
 
 	////////////////////
@@ -91,12 +106,12 @@ func main() {
 
 		cfg := &tls.Config{Certificates: []tls.Certificate{pair}}
 
-		go ListenAndServeHTTPS(cfg)
-		go ListenAndServeMQTTTLS(cfg)
+		ListenAndServeHTTPS(cfg)
+		ListenAndServeMQTTTLS(cfg)
 	}
 
-	go ListenAndServerMQTT()
-	ListenAndServeHTTP()
+	ListenAndServerMQTT()
+	ListenAndServeHTTP() // will block
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -116,17 +131,19 @@ func (resp *ResponseWriter) WriteHeader(statusCode int) {
 func Serve(resp http.ResponseWriter, req *http.Request) {
 	wrapper := ResponseWriter{resp, 200}
 
-	if strings.HasPrefix(req.RequestURI, "/www/") {
-		req.RequestURI = req.RequestURI[4:]
-		req.URL.Path = req.URL.Path[4:]
-		static.ServeHTTP(&wrapper, req)
+	if static != nil {
+		if strings.HasPrefix(req.RequestURI, "/www/") {
+			req.RequestURI = req.RequestURI[4:]
+			req.URL.Path = req.URL.Path[4:]
+			static.ServeHTTP(&wrapper, req)
 
-		log.Printf("[WWW  ] (%s) %d %s \"/www%s\"\n",
-			req.RemoteAddr,
-			wrapper.status,
-			req.Method,
-			req.RequestURI)
-		return
+			log.Printf("[WWW  ] (%s) %d %s \"/www%s\"\n",
+				req.RemoteAddr,
+				wrapper.status,
+				req.Method,
+				req.RequestURI)
+			return
+		}
 	}
 
 	if req.Method == http.MethodPut || req.Method == http.MethodPost {
@@ -140,17 +157,25 @@ func Serve(resp http.ResponseWriter, req *http.Request) {
 		req.Body = &tools.ClosingBuffer{bytes.NewBuffer(body)}
 	}
 
-	router.ServeHTTP(&wrapper, req)
+	if req.Method == "PUBLISH" {
+		req.Method = http.MethodPost
+		router.ServeHTTP(&wrapper, req)
+		req.Method = "PUBLISH"
+	} else {
+		router.ServeHTTP(&wrapper, req)
+	}
 
-	log.Printf("[%s] (%s) %d %s \"%s\"\n",
-		req.Header.Get("X-Tag"),
-		req.RemoteAddr,
-		wrapper.status,
-		req.Method,
-		req.RequestURI)
+	/*
+		log.Printf("[%s] (%s) %d %s \"%s\"\n",
+			req.Header.Get("X-Tag"),
+			req.RemoteAddr,
+			wrapper.status,
+			req.Method,
+			req.RequestURI)
+	*/
 
 	if cbuf, ok := req.Body.(*tools.ClosingBuffer); ok {
-		log.Printf("[DEBUG] Body: %s\n", cbuf.Bytes())
+		// log.Printf("[DEBUG] Body: %s\n", cbuf.Bytes())
 		msg := &mqtt.Message{
 			QoS:   0,
 			Topic: req.RequestURI[1:],
